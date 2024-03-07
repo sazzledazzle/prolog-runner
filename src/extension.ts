@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import * as child_process from 'child_process';
 
 export function activate(context: vscode.ExtensionContext) {
     let disposable = vscode.commands.registerCommand('prolog-runner.run', () => {
