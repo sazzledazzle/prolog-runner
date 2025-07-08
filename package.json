@@ -4,7 +4,7 @@
   "publisher": "eliasgrewe",
   "description": "Runs your prolog code like a script.",
   "icon": "icon.png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -22,22 +22,41 @@
     "Other"
   ],
   "activationEvents": [
+    "onCommand:prolog-runner.run",
     "onLanguage:prolog"
   ],
   "main": "./out/extension.js",
   "contributes": {
-    "commands": [{
+    "commands": [
+      {
         "command": "prolog-runner.run",
         "title": "▶ Run Prolog File"
-    }],
+      }
+    ],
     "menus": {
-        "editor/title": [{
-            "when": "resourceLangId == prolog",
-            "command": "prolog-runner.run",
-            "group": "navigation"
-        }]
-    }
-},
+      "editor/title": [
+        {
+          "when": "resourceLangId == prolog",
+          "command": "prolog-runner.run",
+          "group": "navigation"
+        }
+      ]
+    },
+    "languages": [
+      {
+        "id": "prolog",
+        "aliases": [
+          "Prolog"
+        ],
+        "extensions": [
+          ".pl",
+          ".pro",
+          ".P"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ]
+  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
@@ -47,14 +66,17 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.87.0",
     "@types/mocha": "^10.0.6",
     "@types/node": "18.x",
+    "@types/vscode": "^1.87.0",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
-    "eslint": "^8.56.0",
-    "typescript": "^5.3.3",
     "@vscode/test-cli": "^0.0.6",
-    "@vscode/test-electron": "^2.3.9"
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "vscode": "^1.1.37"
   }
 }
